@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
+<head> 
+   
     <meta charset="UTF-8">
     <link href="styles/site.css" rel="stylesheet">
     <script src="scripts/jquery.js"></script>
@@ -13,38 +14,38 @@
         <div id="logo"></div>
         <div id="companyName">Brand</div>
         <div id="navWrap">
-            <a href="#">
+            <a href="/">
                 Главная
             </a>
-            <a href="#">
+            <a href="index.php?page=shop">
                 Магазин
             </a>
         </div>
     </div>
 </header>
 
-<div id="content">
+<div id="content" >
 
     <?php
     $goods = [
         [
             'id' => 1,
             'name' => 'Iphone',
-            'desc' => 'Описание для Iphone',
+            'desc' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
             'img' => '/images/goods/iphone.jpg',
             'price' => '2000 $'
         ],
         [
             'id' => 2,
             'name' => 'HTC',
-            'desc' => 'Описание для HTC',
+            'desc' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
             'img' => '/images/goods/htc.jpg',
             'price' => '1200 $'
         ],
         [
             'id' => 3,
             'name' => 'Samsung',
-            'desc' => 'Описание для Samsung',
+            'desc' => 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
             'img' => '/images/goods/samsung.jpg',
             'price' => '1400 $'
         ],
@@ -53,132 +54,29 @@
     $page = $_GET['page'];
 
     if (!isset($page)) {
-        echo 'здесь вместо этой надписи будет контент для главной страницы';
+        require('templates/main.php');
     } elseif ($page == 'shop') {
-        echo 'здесь будет страница с товарами';
+        require('templates/shop.php');
     } elseif ($page == 'product') {
-        echo 'а тут у нас будет страница с открытым товаром';
+        $id = $_GET['id'];
+        $good = [];
+        foreach ($goods as $product) {
+            if ($product['id'] == $id) {
+                $good = $product;
+                break;
+            }
+        }
+        require('templates/openProduct.php');
     }
 
     ?>
 
-    <!--<div id="promo">
-        <h1 id="promoText">
-            Здесь будет рекламный заголовок
-        </h1>
-    </div>
-
-    <div id="mainTextWrap">
-        <div id="mainText">
-            Здесь будет текст для главной страницы. Здесь будет текст для главной страницы. Здесь будет текст для главной страницы.
-            Здесь будет текст для главной страницы. Здесь будет текст для главной страницы. Здесь будет текст для главной страницы.
-            Здесь будет текст для главной страницы. Здесь будет текст для главной страницы. Здесь будет текст для главной страницы.
-            Здесь будет текст для главной страницы. Здесь будет текст для главной страницы. Здесь будет текст для главной страницы.
-            Здесь будет текст для главной страницы. Здесь будет текст для главной страницы. Здесь будет текст для главной страницы.
-            Здесь будет текст для главной страницы. Здесь будет текст для главной страницы. Здесь будет текст для главной страницы.
-            Здесь будет текст для главной страницы. Здесь будет текст для главной страницы. Здесь будет текст для главной страницы.
-            Здесь будет текст для главной страницы. Здесь будет текст для главной страницы. Здесь будет текст для главной страницы.
-            Здесь будет текст для главной страницы. Здесь будет текст для главной страницы. Здесь будет текст для главной страницы.
-        </div>
-    </div>
-
-    <div style="width: 1100px; margin: 0 auto">
-        <hr>
-        <h2>
-            Это будет отдельная страница с открытым магзином
-        </h2>
-
-        <div style="width: 1100px; margin: 0 auto">
-            <h1>
-                Каталог товаров
-            </h1>
-            <div>
-                <div class="shopUnit">
-                    <img src="http://placehold.it/308x231" />
-
-                    <div class="shopUnitName">
-                        Название продукта
-                    </div>
-                    <div class="shopUnitShortDesc">
-                        Здесь будет немного текста описывающего продукт.
-                        Здесь будет немного текста описывающего продукт.
-                        Здесь будет немного текста описывающего продукт.
-                    </div>
-                    <div class="shopUnitPrice">
-                        Цена: 0000 $
-                    </div>
-                    <a href="#" class="shopUnitMore">
-                        Подробнее
-                    </a>
-                </div>
-
-                <div class="shopUnit">
-                    <img src="http://placehold.it/308x231" />
-
-                    <div class="shopUnitName">
-                        Название продукта
-                    </div>
-                    <div class="shopUnitShortDesc">
-                        Здесь будет немного текста описывающего продукт.
-                        Здесь будет немного текста описывающего продукт.
-                        Здесь будет немного текста описывающего продукт.
-                    </div>
-                    <div class="shopUnitPrice">
-                        Цена: 0000 $
-                    </div>
-                    <a href="#" class="shopUnitMore">
-                        Подробнее
-                    </a>
-                </div>
-
-                <div class="shopUnit">
-                    <img src="http://placehold.it/308x231" />
-
-                    <div class="shopUnitName">
-                        Название продукта
-                    </div>
-                    <div class="shopUnitShortDesc">
-                        Здесь будет немного текста описывающего продукт.
-                        Здесь будет немного текста описывающего продукт.
-                        Здесь будет немного текста описывающего продукт.
-                    </div>
-                    <div class="shopUnitPrice">
-                        Цена: 0000 $
-                    </div>
-                    <a href="#" class="shopUnitMore">
-                        Подробнее
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div style="margin-bottom: 20px; float: left;">
-            <hr>
-            <h2>
-                Это будет отдельная страница с открытым товаром
-            </h2>
-
-            <div id="openedProduct-img">
-                <img src="http://placehold.it/342x260">
-            </div>
-            <div id="openedProduct-content">
-                <h1 id="openedProduct-name">
-                    Название продукта
-                </h1>
-                <div id="openedProduct-desc">
-                    Здесь будет описание продукта. Здесь будет описание продукта. Здесь будет описание продукта.
-                    Здесь будет описание продукта. Здесь будет описание продукта. Здесь будет описание продукта.
-                    Здесь будет описание продукта. Здесь будет описание продукта. Здесь будет описание продукта.
-                </div>
-                <div id="openedProduct-price">
-                    Цена: 0000 $
-                </div>
-            </div>
-        </div>
-
-
-    </div>-->
+    
 </div>
+
+
+
+
 
 <footer>
     <div id="footerInside">
@@ -199,8 +97,8 @@
         </div>
 
         <div id="footerNav">
-            <a href="#">Главная</a>
-            <a href="#">Магазин</a>
+            <a href="/">Главная</a>
+            <a href="index.php?page=shop">Магазин</a>
         </div>
 
         <div id="social">
